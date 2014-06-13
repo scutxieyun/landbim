@@ -1,0 +1,16 @@
+<project name="BIM Tool">
+<fileset id="lib" dir="D:\JDK1.7\lib">
+	<include name="*.jar" />
+	<include name="missioncontrol/plugins/javax.servlet_3.0.0.v201112011016.jar"/>
+</fileset>
+<target name="tool">
+	<javac destdir="../../examples/WEB-INF/classes" debug="on" includeantruntime="false">
+			<src path="." />
+			<classpath>
+				<path>
+					<fileset refid="lib" />
+				</path>
+			</classpath>
+		</javac>
+</target>
+</project>

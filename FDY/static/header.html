@@ -1,0 +1,102 @@
+﻿<div class="navigation-bar dark">
+    <div class="navigation-bar-content container">
+        <a href="index.html" class="element"> <img src="images/Logo.png"/>
+        </a>
+        <span class="element-divider"></span>
+       <div class="element place-right">
+          <a class="dropdown-toggle" href="#">
+              <span class="icon-cog"></span>
+          </a>
+          <ul class="dropdown-menu place-right dark" data-role="dropdown">
+              <li><a href="#">快速使用</a></li>
+              <li><a href="#">Download</a></li>
+              <li><a href="#">热线</a></li>
+              <li><a href="#">帮助</a></li>
+          </ul>
+       </div>
+       <span class="element-divider place-right"></span>
+       <button class="element image-button image-left place-right" id="Login">
+                              登录
+           <img src="images/Login1.png"/>
+       </button>
+
+       <span class="element-divider place-right"></span>
+                        <button class="element image-button icon-arrow-down-4 place-left" id="selCity"> 
+                                                                         北京                                                                                
+                        </button> 
+                        <div class="element input-element place-left">
+                            <form>
+                                <div class="input-control text">
+                                    <input type="text" placeholder="查询...">
+                                    <button class="btn-search"></button>
+                                </div>
+                            </form>
+                        </div>
+                <script>
+                    $(function(){
+
+                        $("#Login").on('click', function(){
+                            $.Dialog({
+                                overlay: true,
+                                shadow: true,
+                                flat: true,
+                                draggable: true,
+                                icon: '<img src="images/Login.png">',
+                                title: '登录',
+                                content: '',
+                                padding: 10,
+                                onShow: function(_dialog){
+                                    var content = '<form class="user-input">' +
+                                            '<label>用户</label>' +
+                                            '<div class="input-control text"><input type="text" name="login"><button class="btn-clear"></button></div>' +
+                                            '<label>密码</label>'+
+                                            '<div class="input-control password"><input type="password" name="password"><button class="btn-reveal"></button></div>' +
+                                            '<div class="input-control checkbox"><label><input type="checkbox" name="c1" checked/><span class="check"></span>Check me out</label></div>'+
+                                            '<div class="form-actions">' +
+                                            '<button class="button primary">登录...</button>&nbsp;'+
+                                            '<button class="button" type="button" onclick="$.Dialog.close()">取消</button> '+
+                                            '<a href="FDY_12.html"><img src="images/loginbtn_03.png"></a> '+                                            
+                                            '</div>'+
+                                            '</form>';
+
+                                    $.Dialog.title("用户登录");
+                                    $.Dialog.content(content);
+                                }
+                            });
+                        });
+                        
+                        $("#selCity").on('click', function(){
+                            $.Dialog({
+                                overlay: true,
+                                shadow: true,
+                                flat: true,
+                                draggable: true,
+                                icon: '<img src="images/Logo.png">',
+                                title: 'Flat window',
+                                content: '',
+                                padding: 10,
+                                onShow: function(_dialog){
+                                    var content = '<form class="user-input">' +
+                                            '<label>直辖市</label>' +
+                                            '<button class="button primary">上海</button>&nbsp;'+
+                                            '<button class="button primary">天津</button>&nbsp;'+
+                                            '<button class="button primary">重庆</button>'+                                                                                                                                    
+                                            '<label>省会城市</label>'+
+                                            '<button class="button primary">广州</button>&nbsp;'+
+                                            '<button class="button primary">南京</button>&nbsp;'+
+                                            '<button class="button primary">杭州</button> '+    
+                                            '<label>地级市</label>'+                                                                                                                                
+                                            '<button class="button primary">无锡</button>&nbsp;'+
+                                            '<button class="button primary">安顺</button> '+
+                                            '</div>'+
+                                            '</form>';
+
+                                    $.Dialog.title("选择城市");
+                                    $.Dialog.content(content);
+                                }
+                            });
+                        });
+                      });
+                </script>                                    
+    </div>
+</div>

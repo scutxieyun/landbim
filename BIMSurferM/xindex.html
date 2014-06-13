@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang='en'>
+<!--
+      Bimsurfer - An open source WebGL viewer for IFC models.
+      Copyright 2011, Bimsurfer.org.
+-->
+<head>
+  <meta charset='utf-8'>
+  <!-- <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'> -->
+  <title>XBimViews</title>
+  <meta name='description' content='A sleek WebGL viewer for Building Information Models'>
+  <meta name='author' content='Yun Xie'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Stylesheet -->
+
+  <link type='text/css' href='./static/css/bootstrap.min.css' rel='stylesheet' />	
+  <!--<link type='text/css' href='./static/lib/jquery/jquery-ui-1.9.1.custom.min.css' rel='stylesheet' />-->
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+  <link type='text/css' href='./static/css/main.css' rel='stylesheet' />
+  <style type="text/css">
+body, html{width: 100%;height: 100%;overflow: hidden;margin:0;}
+#allmap {height:400pt}
+table tr.selected {background:green}
+div.scroll_y {overflow-y: scroll;}
+	</style>
+ 
+</head>
+<body>
+	<div id="page_login">
+		<div class="row">XBim Browse System</div>
+		<div id="login-dv" class="row" >
+			<form id="login-frm" class="form-horizontal">
+			<div class="control-group">
+				<label class="control-label" for="user-name">Email</label>
+				<div class="controls">
+				<input type="text" id="user-name" value="scutxieyun@hotmail.com" >
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="password">Password</label>
+				<div class="controls">
+					<input type="password" id="password" value="561000">
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+				<button id="login-submit" type=submit class="btn">Sign in</button>
+				</div>
+			</div>
+			</form>
+		</div>
+	</div>
+	<div id="page_map">
+		<div id="allmap" class="row" ></div>
+		<div class="row scroll_y">
+			<table id="project_list" class="table table-striped">
+	
+			</table >
+		</div>
+	</div>
+<!-- Stylesheet -->
+<!--  <script src='static/lib/jquery/jquery-1.8.2.min.js'></script>
+  <script src='static/lib/jquery/jquery-ui-1.9.1.custom.min.js'></script> -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+  <script src='static/lib/jquery/jquery.cookie.js'></script>
+  <script src='static/lib/jquery/sha256.js'></script>
+  <script src='static/lib/bootstrap.min.js'></script>
+  <script src='static/lib/utils.js'></script>
+  <script src='static/lib/xapp.js'></script>
+  <script src='/bimserver/js/bimserverapi.js'></script> 
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=FQeNAsFsrNQShqMdXNrD45j5"></script>
+
+</body>
+</html>
+<script type="text/javascript">
+$(function(){
+	$("#page_map").hide();
+	$("#login-frm").submit(function(){
+		xbim_views.login({
+					"server":"http://127.0.0.1:8080/bimserver",
+					"user_name":$("#user-name").val(),
+					"password":$("#password").val()
+					},function(res){
+						if(res == true){
+							//$("#login-frm").close();
+							$("#page_login").hide();
+							$("#page_map").toggle();
+							init_map();
+							xbim_views.load_projects(function(res){
+								init_project_list(res);
+							});
+						}
+					});
+	return false;
+	});
+});
+// 百度地图API功能
+var map = new BMap.Map("allmap");                        // 创建Map实例
+var info_window = new BMap.InfoWindow("Here");
+var xbim_views = new XBimView({ak:"FQeNAsFsrNQShqMdXNrD45j5"});
+function init_map(){
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);     // 
+	map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
+	map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
+	map.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
+	map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+	map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
+	map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+}
+function init_project_list(res){
+	$("#project_list").empty();
+	for(var id in res){
+		$("<tr></tr>").addClass("project_item")
+					.append("<td>" + res[id].id + "</td>")
+					.append("<td>" + res[id].name + "</td>")
+					.append("<td>" + res[id].refLatitude + "," + res[id].refLongtitude + "</td>")
+					.append("<td class='addr'>" + "</td>")
+					.attr("id",res[id].id)
+					.appendTo($("#project_list"));
+	}
+	$("#project_list").click(function(evt){
+						var pid = $(evt.target.parentElement).attr("id");
+						var point;
+						evt.preventDefault();
+						if(! $(evt.target.parentElement).hasClass("project_item")) return;				
+						$("#project_list tr.selected").removeClass("selected");
+						$(evt.target.parentElement).addClass("selected");
+						point = new BMap.Point(xbim_views.projects[pid].refLongtitude,
+											xbim_views.projects[pid].refLatitude);
+						map.centerAndZoom(point,
+											18);
+						map.openInfoWindow(info_window,point);
+						});
+	xbim_views.updateLocationInfo(function(pid, addr){
+							$("tr#"+pid + " td.addr").text(addr);
+								});
+}
+</script>

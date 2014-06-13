@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="product" content="Metro UI CSS Framework">
+    <meta name="description" content="Simple responsive css framework">
+    <meta name="author" content="Sergey S. Pimenov, Ukraine, Kiev">
+
+    <link href="css/metro-bootstrap.css" rel="stylesheet">
+    <link href="css/metro-bootstrap-responsive.css" rel="stylesheet">
+    <link href="css/iconFont.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery.widget.min.js"></script>
+    <script src="js/jquery/jquery.mousewheel.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+	<script src="js/metro/metro.min.js"></script>
+    <!-- Metro UI CSS JavaScript plugins -->
+	<script src="js/landonmap.js"></script>
+	  <style type="text/css">
+body, html{width: 100%;height: 100%;overflow: hidden;margin:0;}
+#allmap {height:400pt}
+table tr.selected {background:green}
+div.scroll_y {overflow-y: scroll;}
+	</style></head>
+	
+    <!-- Local JavaScript -->
+    <script src="js/docs.js"></script>
+    <script src="js/github.info.js"></script>
+
+    <title>房地云平台</title>
+</head>
+<body class="metro">
+    <header class="bg-dark" data-load="header.html"></header>
+    <div class="container">
+                            <div class="content">
+                                <div class="grid fluid">
+                                    <div class="row">
+                                        <div class="span5">
+                                            <h1>
+                                              <a href="FDY_11.html"><i class="icon-arrow-left-3 fg-darker smaller"></i></a>
+                                                                                                                           土地市场<sup>1.0</sup><small class="on-right"></small>
+                                            </h1>    
+                                            <div class="tab-control" data-role="tab-control">
+                                                <ul class="tabs">
+                                                    <li><a href="#_page_1">城市动态</a></li>
+                                                    <li><a href="#_page_2">行业发展</a></li>
+                                                    <li><a href="#_page_3">焦点数据</a></li>
+                                                    <li class="active place-right"><a href="#_page_4"><i class="icon-heart">项目</i></a></li>
+                                                </ul>
+
+                                                <div class="frames">
+                                                    <div class="frame clearfix" id="_page_1">
+                                <div class="accordion with-marker span11 place-left margin10" data-role="accordion" data-closeany="false">
+                                    <div class="accordion-frame">
+                                        <a class="heading bg-lightBlue fg-white" href="#">Item #1</a>
+                                        <div class="content">
+                                            <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading text-right ribbed-green fg-white" href="#">Item #2</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-frame">
+                                        <a class="heading ribbed-red fg-white" href="#">Item #3</a>
+                                        <div class="content">
+                                            <p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut.</p>
+                                            <button class="primary">Activate the account</button>
+                                        </div>
+                                    </div>
+                                </div>                                                                                                         
+                                                    </div>
+                                                    <div class="frame" id="_page_2">
+                                                        <p>Second Tab</p>
+                                                    </div>
+                                                    <div class="frame" id="_page_3">
+                                                        <p>Rocket Tab</p>
+                                                    </div>
+                                                    <div class="frame clearfix" id="_page_4">                                           
+                                                      <div class="padding10">
+                                                             <button class="shortcut primary">
+                                                                <i class="icon-location"></i>
+                                                                <strong>招标</strong>
+                                                                <small class="bg-lightBlue fg-white">8</small>
+                                                             </button>
+                                                             <button class="shortcut danger">
+                                                                <i class="icon-location"></i>
+                                                                <strong>拍卖</strong>
+                                                                <small class="bg-red fg-white">8</small>
+                                                             </button>
+                                                             <button class="shortcut link">
+                                                                <i class="icon-location"></i>
+                                                                <strong>挂牌</strong>
+                                                                <small class="bg-cobalt fg-white">15</small>
+                                                             </button>
+                                                             <button class="shortcut primary">
+                                                                <i class="icon-location"></i>
+                                                                <strong>全部</strong>
+                                                                <small class="bg-red fg-white">31</small>
+                                                             </button>
+                                                             <button class="shortcut danger">
+                                                                <i class="icon-location"></i>
+                                                                <strong>热点</strong>
+                                                                <small class="bg-lightBlue fg-white">9</small>
+                                                             </button>
+                                                      </div>
+                                                      <div class="padding10">
+                                <div class="accordion with-marker span11 place-left margin10" data-role="accordion" data-closeany="false">
+                                    <div class="accordion-frame">
+                                        <a class="heading bg-lightBlue fg-white" href="#">项目清单</a>
+                                        <div class="content">
+                                                        <div id="prj_tab">
+															<table id="project_list" class="table table-striped">
+															</table >
+														</div> 
+                                        </div>
+                                    </div>                                                        
+													  </div>                                                      
+                                                    </div>         
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        <div class="span7">
+                                          <div id="allmap"></div>
+                                        </div>
+                              </div>
+                      </div>                                    
+             </div>
+    </div>
+    <script src="js/hitua.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=FQeNAsFsrNQShqMdXNrD45j5"></script>
+</body>
+<script>
+
+// 百度地图API功能
+var map = new BMap.Map("allmap");                        // 创建Map实例
+var lands_tab = new LandOnMap("#prj_tab");
+var info_window = new BMap.InfoWindow("Here");
+function init_map(){
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);     // 
+	map.addControl(new BMap.NavigationControl());               // 添加平移缩放控件
+	map.addControl(new BMap.ScaleControl());                    // 添加比例尺控件
+	map.addControl(new BMap.OverviewMapControl());              //添加缩略地图控件
+	map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+	map.addControl(new BMap.MapTypeControl());          //添加地图类型控件
+	map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+}
+function init_tab(){
+	lands_tab.drawTable(land_data);
+}
+$(function(){
+	init_map();
+	init_tab();
+});
+function lands_draw(){
+
+}
+var land_data = [
+	{
+		"refLatitude":116.691443,
+		"refLongitude":39.911723,
+		"title":"通州核心区IX-05",
+		"boundary":[{x:20,y:20},{x:-20,y:20},{x: -20,y: -20},{x:20,y: -20}]
+	},
+	{
+		"refLatitude":116.68706,
+		"refLongitude":39.913847,
+		"title":"通州核心区IX-02",
+		"boundary":[{x:20,y:20},{x:-20,y:20},{x: -20,y: -20},{x:20,y: -20}]
+	},
+	{	
+		"refLatitude":116.364577,
+		"refLongitude":39.777875,
+		"title":"大兴西红门0302-010-2",
+		"boundary":[{x:20,y:20},{x:-20,y:20},{x: -20,y: -20},{x:20,y: -20}]
+	},
+	{	
+		"refLatitude":116.396082,
+		"refLongitude":40.179856,
+		"title":"汤House三期",
+		"boundary":[{x:20,y:40},{x:-20,y:40},{x: -20,y: -20},{x:20,y: -20}]
+	}
+]
+</script>
+</html>

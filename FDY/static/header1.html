@@ -1,0 +1,76 @@
+﻿<div class="navigation-bar dark">
+    <div class="navigation-bar-content container">
+        <a href="index.html" class="element"> <img src="images/Logo.png"/>
+        </a>
+        <span class="element-divider"></span>
+                     <div class="no-tablet-portrait">                        
+                        <span class="element-divider"></span>
+                        <a class="element brand" href="#"><span class="icon-spin"></span></a>
+                        <a class="element brand" href="#"><span class="icon-printer"></span></a>
+                        <span class="element-divider"></span>
+
+                        <div class="element place-right">
+                            <a class="dropdown-toggle" href="#">
+                                <span class="icon-cog"></span>
+                            </a>
+                            <ul class="dropdown-menu place-right dark" data-role="dropdown">
+                                <li><a href="#">快速使用</a></li>
+                                <li><a href="#">Download</a></li>
+                                <li><a href="#">热线</a></li>
+                                <li><a href="#">帮助</a></li>
+                            </ul>
+                        </div>
+                        <span class="element-divider place-right"></span>
+                        <button class="element image-button image-left place-right">
+                                                                        房地美
+                           <img src="images/me.jpg"/>
+                        </button>
+                        <button class="element image-button icon-arrow-down-4 place-left" id="selCity"> 
+                                                                        北京                                                                                
+                        </button> 
+                        <div class="element input-element place-left">
+                            <form>
+                                <div class="input-control text">
+                                    <input type="text" placeholder="定制查询结果：[4]">
+                                    <button class="btn-search"></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                <script>
+                    $(function(){
+
+                        $("#selCity").on('click', function(){
+                            $.Dialog({
+                                overlay: true,
+                                shadow: true,
+                                flat: true,
+                                draggable: true,
+                                icon: '<img src="images/Logo.png">',
+                                title: 'Flat window',
+                                content: '',
+                                padding: 10,
+                                onShow: function(_dialog){
+                                    var content = '<form class="user-input">' +
+                                            '<label>直辖市</label>' +
+                                            '<button class="button primary">上海</button>&nbsp;'+
+                                            '<button class="button primary">天津</button>&nbsp;'+
+                                            '<button class="button primary">重庆</button>'+                                                                                                                                    
+                                            '<label>省会城市</label>'+
+                                            '<button class="button primary">广州</button>&nbsp;'+
+                                            '<button class="button primary">南京</button>&nbsp;'+
+                                            '<button class="button primary">杭州</button> '+    
+                                            '<label>地级市</label>'+                                                                                                                                
+                                            '<button class="button primary">无锡</button>&nbsp;'+
+                                            '<button class="button primary">安顺</button> '+
+                                            '</div>'+
+                                            '</form>';
+
+                                    $.Dialog.title("选择城市");
+                                    $.Dialog.content(content);
+                                }
+                            });
+                        });
+                      });
+                </script>                       
+</div>
